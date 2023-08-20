@@ -16,51 +16,51 @@ If **$XDG_CONFIG_HOME** is either not set or empty, **$HOME/.config/git/ignore**
 
 ### Просмотр конфигурации git
 
-    ```bash
-    git config --list
-    git config --global --list
-    git config --local --list
-    ```
+```bash
+git config --list
+git config --global --list
+git config --local --list
+```
 
 ### Просмотр кофигурации по умолчанию
 
-    ```bash
-    git config --list --show-origin
-    ```
+```bash
+git config --list --show-origin
+```
 
 ### Изменение конфигурации для пользователя
 
-    ```bash
-    git config --global  user.name 'ayfaar'
-    git config --global user.email 'noemail'
-    git config --global color.ui true
-    git config --global core.editor 'nano'
-    git config --global core.excludesFile ~/.gitignore_global
-    git config --global  alias.hist  "log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short"
-    git config --global alias.hist "log --pretty=format:'%C(yellow)[%ad]%C(reset) %C(green)[%h]%C(reset) | %C(red)%s %C(bold red){{%an}}%C(reset) %C(blue)%d%C(reset)' --graph --date=short"
-    ```
+```bash
+git config --global  user.name 'ayfaar'
+git config --global user.email 'noemail'
+git config --global color.ui true
+git config --global core.editor 'nano'
+git config --global core.excludesFile ~/.gitignore_global
+git config --global  alias.hist  "log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short"
+git config --global alias.hist "log --pretty=format:'%C(yellow)[%ad]%C(reset) %C(green)[%h]%C(reset) | %C(red)%s %C(bold red){{%an}}%C(reset) %C(blue)%d%C(reset)' --graph --date=short"
+```
 
 #### Proxy
 
-    ```bash
-    git config --global http.proxy http://proxy.mycompany:80
-    ```
+```bash
+git config --global http.proxy http://proxy.mycompany:80
+```
 
 ### Параметры окончания строк
 
 *Unix/Mac*:
 
-    ```bash
-    git config --global core.autocrlf input
-    git config --global core.safecrlf true
-    ```
+```bash
+git config --global core.autocrlf input
+git config --global core.safecrlf true
+```
 
 *Windows*:
 
-    ```bash
-    git config --global core.autocrlf input
-    git config --global core.safecrlf true
-    ```
+```bash
+git config --global core.autocrlf input
+git config --global core.safecrlf true
+```
 
 ### Personal access token(PAT)
 
@@ -70,33 +70,33 @@ If **$XDG_CONFIG_HOME** is either not set or empty, **$HOME/.config/git/ignore**
 
 Для включение запоминания токена(хранится в открытом виде в файле **~/.git-credentials**):
 
-    ```bash
-    touch ~/.git-credentials
-    git config --global credential.helper store
-    ```
+```bash
+touch ~/.git-credentials
+git config --global credential.helper store
+```
 
 ### gitignore
 
-    ```bash
-    git config --global core.excludesfile ~/.gitignore_global
-    ```
+```bash
+git config --global core.excludesfile ~/.gitignore_global
+```
 
 Содержание gitignore
 
-    ```
-    # Django
-    *.log
-    *.pot
-    *.pyc
-    __pycache__/
-    db.sqlite3
+```text
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
 
-    # Python #
-    *.py[cod]
-    *$py.class
-    # Environments
-    venv/
-    ```
+# Python #
+*.py[cod]
+*$py.class
+# Environments
+venv/
+```
 
 ## SSH settings
 
@@ -104,29 +104,29 @@ If **$XDG_CONFIG_HOME** is either not set or empty, **$HOME/.config/git/ignore**
 
 Генерируем SSH ключ:
 
-    ```bash
-    ssh-keygen -t rsa -b 4096 -C "ваша@почта.com"
-    ```
+```bash
+ssh-keygen -t rsa -b 4096 -C "ваша@почта.com"
+```
 
 Запустим  ssh-agent:
 
-    ```bash
-    eval `ssh-agent -s`
-    ```
+```bash
+eval `ssh-agent -s`
+```
 
 Добавим ранее сгенерированный приватный ключ в ssh-agent:
 
-    ```bash
-    ssh-add ~/.ssh/id_rsa
-    ```
+```bash
+ssh-add ~/.ssh/id_rsa
+```
 
 ### Добавление ключа SSH в учетную запись GitHub
 
 Скопируем содержимое файла с открытым ключем:
 
-    ```bash
-    cat ~/.ssh/id_rsa.pub | clip
-    ```
+```bash
+cat ~/.ssh/id_rsa.pub | clip
+```
 
 Добавим скопированный ключ в настройки GitHub:
     **GitHub -> Settins -> SSH and GPG keys -> New SSH key**
@@ -149,62 +149,62 @@ If **$XDG_CONFIG_HOME** is either not set or empty, **$HOME/.config/git/ignore**
 
 Создание репозитария через командную строку:
 
-    ```bash
-    #!/bin/bash
+```bash
+#!/bin/bash
 
-    # Set your GitHub credentials and repository details
-    USERNAME="<your-username>"
-    TOKEN="<your-github-token>"
-    REPO_NAME="<your-repo-name>"
-    DESCRIPTION="<your-repo-description>"
+# Set your GitHub credentials and repository details
+USERNAME="<your-username>"
+TOKEN="<your-github-token>"
+REPO_NAME="<your-repo-name>"
+DESCRIPTION="<your-repo-description>"
 
-    # Create the repository using the GitHub API
-    curl -u $USERNAME:$TOKEN https://api.github.com/user/repos -d "{\"name\":\"$REPO_NAME\",\"description\":\"$DESCRIPTION\"}"
+# Create the repository using the GitHub API
+curl -u $USERNAME:$TOKEN https://api.github.com/user/repos -d "{\"name\":\"$REPO_NAME\",\"description\":\"$DESCRIPTION\"}"
 
-    # Check if the repository was created successfully
-    if [ $? -eq 0 ]; then
-        echo "Repository $REPO_NAME created successfully!"
-    else
-        echo "Failed to create repository $REPO_NAME. Please check your credentials or try again later."
-    fi
-    ```
+# Check if the repository was created successfully
+if [ $? -eq 0 ]; then
+    echo "Repository $REPO_NAME created successfully!"
+else
+    echo "Failed to create repository $REPO_NAME. Please check your credentials or try again later."
+fi
+```
 
 Удаление репозитария через командную строк:
 
-    ```bash
-    #!/bin/bash
+```bash
+#!/bin/bash
 
-    # Set your GitHub API token
-    TOKEN="Your GitHub API token"
+# Set your GitHub API token
+TOKEN="Your GitHub API token"
 
-    # Set the repository owner and name
-    OWNER="Owner's username or organization"
-    REPO="Repository name"
+# Set the repository owner and name
+OWNER="Owner's username or organization"
+REPO="Repository name"
 
-    # Make a DELETE request to delete the repository
-    curl -X DELETE -H "Authorization: token $TOKEN" "https://api.github.com/repos/$OWNER/$REPO"
-    ```
+# Make a DELETE request to delete the repository
+curl -X DELETE -H "Authorization: token $TOKEN" "https://api.github.com/repos/$OWNER/$REPO"
+```
 
 Список репозитариев:
 
-    ```bash
-    #!/bin/bash
+```bash
+#!/bin/bash
 
-    # Set your GitHub username and personal access token
-    GITHUB_USERNAME="ayfaar"
-    GITHUB_TOKEN="You Github API Token"
+# Set your GitHub username and personal access token
+GITHUB_USERNAME="ayfaar"
+GITHUB_TOKEN="You Github API Token"
 
-    # Send GET request to the GitHub API repositories endpoint
-    response=$(curl -s -H "Authorization: Token $GITHUB_TOKEN" \
-    "https://api.github.com/users/$GITHUB_USERNAME/repos")
+# Send GET request to the GitHub API repositories endpoint
+response=$(curl -s -H "Authorization: Token $GITHUB_TOKEN" \
+"https://api.github.com/users/$GITHUB_USERNAME/repos")
 
-    # Parse the response using jq (make sure jq is installed: sudo apt-get install jq)
-    repo_names=$(echo "$response" | jq -r ".[].name")
+# Parse the response using jq (make sure jq is installed: sudo apt-get install jq)
+repo_names=$(echo "$response" | jq -r ".[].name")
 
-    # Print out the repository names
-    echo "GitHub Repositories for $GITHUB_USERNAME:"
-    echo "$repo_names"
-    ```
+# Print out the repository names
+echo "GitHub Repositories for $GITHUB_USERNAME:"
+echo "$repo_names"
+```
 
 ### Команды git
 
@@ -216,70 +216,70 @@ If **$XDG_CONFIG_HOME** is either not set or empty, **$HOME/.config/git/ignore**
 
 Если требуется изменим имя ветки в которой находимся:
 
-    ```bash
-    git branch -M <branch name>
-    ```
+```bash
+git branch -M <branch name>
+```
 
 Добавим все файлы и папки в буфер для отслеживания
 
-    ```bash
-    git add .
-    ```
+```bash
+git add .
+```
 
 Сделаем коммит изменений
 
-    ```bash
-    git init -m "First commit"
-    ```
+```bash
+git init -m "First commit"
+```
 
 Установим адресс удаленного репозитария
 
-    ```bash
-    git remote add origin https://github.com/ayfaar/my_mds.git
-    ```
+```bash
+git remote add origin https://github.com/ayfaar/my_mds.git
+```
 
 Зальем наш локальный репозитарий на удаленный
 
-    ```bash
-    git push -u origin <local_repo_name>
-    ```
+```bash
+git push -u origin <local_repo_name>
+```
 
 #### Удаленные репозитарии
 
 Список удаленных репозитариев
 
-    ```bash
-    git remote -v
-    ``````
+```bash
+git remote -v
+``````
 
 Добавить удаленный репозитарий
 
-    ```bash
-    git remote add <remote_repo_name> <remote_repo_address>
-    ```
+```bash
+git remote add <remote_repo_name> <remote_repo_address>
+```
 
 Показать адресс удаленного репозитария
 
-    ```bash
-    git remote get-url <remote_repo_name>
-    ```
+```bash
+git remote get-url <remote_repo_name>
+```
 
 Изменить адресс удаленного репозитария:
 
-    ```bash
-    git remote set-url <remote_repo_name> <new-url>
-    ```
+```bash
+git remote set-url <remote_repo_name> <new-url>
+```
 
 #### Отмена сделанных изменеий
 
 ##### добавить текущие изменения в предыдущий коммит, без изменения коментария
 
-    ```bash
-    git commit --amend --no-edit
-    ``````
+```bash
+git commit --amend --no-edit
+``````
 
 ##### Изменить комментарий последнего коммита
 
-    ```bash
-    git commit  --amend -m "Text commit"
-    ```
+```bash
+git commit  --amend -m "Text commit"
+```
