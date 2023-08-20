@@ -244,6 +244,32 @@ If **$XDG_CONFIG_HOME** is either not set or empty, **$HOME/.config/git/ignore**
     git push -u origin <local_repo_name>
     ```
 
+#### Удаленные репозитарии
+
+Список удаленных репозитариев
+
+    ```bash
+    git remote -v
+    ``````
+
+Добавить удаленный репозитарий
+
+    ```bash
+    git remote add <remote_repo_name> <remote_repo_address>
+    ```
+
+Показать адресс удаленного репозитария
+
+    ```bash
+    git remote get-url <remote_repo_name>
+    ```
+
+Изменить адресс удаленного репозитария:
+
+    ```bash
+    git remote set-url <remote_repo_name> <new-url>
+    ```
+
 #### Отмена сделанных изменеий
 
 ##### Изменить комментарий последнего коммита
