@@ -4,3 +4,5 @@
 
 + RabbitMQ
 + Apache Kafka
+
+## Redis
